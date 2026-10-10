@@ -1,0 +1,9 @@
+node_modules
+dist
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+
+# Third-party supplier catalogue used only as a private reference (not ours to redistribute)
+reference/*.pdf
