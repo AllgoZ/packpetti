@@ -21,6 +21,8 @@ export type SceneId =
   | 'bowls'
   | 'sauce'
   | 'hotel'
+  | 'takeaway'
+  | 'clamshellContainers'
 
 export type SceneStatus = 'interim-catalogue' | 'generated' | 'owned'
 
@@ -83,6 +85,20 @@ const DEFS: Record<SceneId, SceneDef> = {
     height: 1495,
     alt: 'Natural fibre-coloured bowls filled with strawberries and a hearty salad',
     status: 'interim-catalogue',
+  },
+  takeaway: {
+    files: [[800, 'takeaway-800.webp'], [1254, 'takeaway-1254.webp']],
+    width: 1254,
+    height: 1254,
+    alt: 'Natural fibre takeaway containers, a lidded rectangular box, an open tray and a round bowl with its lid, on a stone surface',
+    status: 'owned',
+  },
+  clamshellContainers: {
+    files: [[800, 'clamshell-containers-800.webp'], [1536, 'clamshell-containers-1536.webp']],
+    width: 1536,
+    height: 1024,
+    alt: 'Natural fibre hinged clamshell containers, stacked, open and closed, on a stone surface',
+    status: 'owned',
   },
   sauce: {
     files: [[558, 'sauce-558.webp']],
