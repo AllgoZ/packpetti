@@ -185,14 +185,13 @@ export function Header() {
           >
             <nav aria-label="Mobile" className="container-wide flex min-h-full flex-col py-6">
               <ul>
-                {NAV_LINKS.map((l, i) => (
+                {NAV_LINKS.map((l) => (
                   <li key={l.href}>
                     <a
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className="flex items-baseline gap-4 border-b border-ivory/10 py-4 font-display text-[1.75rem] font-bold tracking-tight text-ivory"
+                      className="flex items-baseline border-b border-ivory/10 py-3.5 font-display text-[1.125rem] font-semibold tracking-[0.01em] text-ivory"
                     >
-                      <span className="w-6 font-sans text-xs font-medium text-kraft-300">0{i + 1}</span>
                       {l.label}
                     </a>
                   </li>

@@ -84,7 +84,7 @@ const PANELS: PanelDef[] = [
   },
 ]
 
-function PanelBody({ def, index, onSelect }: { def: PanelDef; index: number; onSelect: Props['onSelectCategory'] }) {
+function PanelBody({ def, onSelect }: { def: PanelDef; onSelect: Props['onSelectCategory'] }) {
   const cat = CATEGORIES.find((c) => c.id === def.id)!
   const families = familiesIn(def.id).length
   const formats = formatCount(def.id)
@@ -145,14 +145,6 @@ function PanelBody({ def, index, onSelect }: { def: PanelDef; index: number; onS
           ))}
         </div>
       )}
-
-      <span
-        className={`absolute left-5 top-4 font-display text-sm font-bold tracking-wide ${
-          photo ? 'text-ivory/85' : 'text-kraft-700'
-        }`}
-      >
-        {String(index + 1).padStart(2, '0')}
-      </span>
 
       <div className={`${photo ? 'absolute inset-x-0 bottom-0' : 'relative'} p-5 sm:p-6 ${def.feature ? 'lg:p-8' : ''}`}>
         <h3
@@ -234,7 +226,7 @@ export function Collection({ onSelectCategory }: Props) {
                 delay={(i % 2) * 0.08}
                 className="h-full rounded-[10px]"
               >
-                <PanelBody def={def} index={i} onSelect={onSelectCategory} />
+                <PanelBody def={def} onSelect={onSelectCategory} />
               </ImageReveal>
             </li>
           ))}
