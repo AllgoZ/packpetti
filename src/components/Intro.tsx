@@ -57,8 +57,8 @@ export function Intro() {
         <ol className="grid gap-8 lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:gap-9">
           {PRINCIPLES.map((p, i) => (
             <li key={p.title}>
-              <Reveal delay={i * 0.07} className="grid grid-cols-[3rem_1fr] gap-x-2">
-                <span className="font-display text-sm font-bold text-kraft-700">0{i + 1}</span>
+              <Reveal delay={i * 0.07} className="grid grid-cols-[1.5rem_1fr] gap-x-2">
+                <span aria-hidden="true" className="mt-[0.7rem] size-1.5 rounded-full bg-kraft" />
                 <div>
                   <h3 className="font-display text-xl font-bold tracking-[-0.02em] text-forest">{p.title}</h3>
                   <p className="mt-1.5 max-w-[26rem] text-[0.9375rem] text-ink/70">{p.text}</p>

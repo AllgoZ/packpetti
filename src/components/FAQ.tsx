@@ -104,9 +104,7 @@ export function FAQ() {
                       className="group flex w-full items-center justify-between gap-6 py-5 text-left lg:py-6"
                     >
                       <span className="flex items-baseline gap-4">
-                        <span aria-hidden="true" className="w-6 shrink-0 font-display text-sm font-bold text-kraft-700">
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
+                        <span aria-hidden="true" className="h-px w-4 shrink-0 self-center bg-kraft" />
                         <span className="font-display text-[1.1875rem] font-bold tracking-[-0.015em] text-forest group-hover:text-kraft-700 sm:text-[1.375rem]">
                           {item.q}
                         </span>

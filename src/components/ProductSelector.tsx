@@ -232,10 +232,6 @@ export function ProductSelector({ filter, familyId, onFilterChange, onFamilyChan
               {category.name}
             </p>
             <div className="absolute right-4 top-4 flex items-center gap-2">
-              <span className="mr-1 hidden font-display text-sm font-bold tabular-nums text-forest sm:inline">
-                {String(index + 1).padStart(2, '0')}
-                <span className="text-muted"> / {String(list.length).padStart(2, '0')}</span>
-              </span>
               <button
                 type="button"
                 onClick={() => step(-1)}

@@ -119,9 +119,6 @@ export function WhoWeServe({ onShowFamily }: Props) {
               </div>
               <p className="t-caption mt-3 flex items-center gap-3 text-muted">
                 <span aria-hidden="true" className="h-px w-6 bg-kraft" />
-                <span className="font-display font-bold text-forest">
-                  {String(Math.max(active, 0) + 1).padStart(2, '0')}
-                </span>
                 {current.name}
               </p>
             </div>
@@ -150,13 +147,6 @@ export function WhoWeServe({ onShowFamily }: Props) {
                       className="flex w-full items-center gap-4 py-5 text-left lg:cursor-default lg:pb-2 lg:pt-6"
                     >
                       <span
-                        className={`w-8 shrink-0 font-display text-sm font-bold transition-colors ${
-                          open ? 'text-kraft-700' : 'text-forest/60'
-                        }`}
-                      >
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span
                         className={`flex-1 font-display text-[clamp(1.5rem,1.2rem+1.1vw,2.2rem)] font-extrabold leading-none tracking-[-0.03em] transition-colors duration-300 ${
                           open ? 'text-forest' : 'text-forest/65'
                         }`}
@@ -182,7 +172,7 @@ export function WhoWeServe({ onShowFamily }: Props) {
                     }`}
                   >
                     <div className="min-h-0 overflow-hidden">
-                      <div className="pb-6 lg:pb-7 lg:pl-12">
+                      <div className="pb-6 lg:pb-7">
                         <div>
                           <p className="max-w-[28rem] text-[0.9375rem] text-ink/75">{s.text}</p>
                           {/* Inline photograph for touch layouts */}

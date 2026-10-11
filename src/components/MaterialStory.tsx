@@ -143,10 +143,10 @@ export function MaterialStory() {
                 style={reduce ? { scaleX: 1 } : { scaleX: draw }}
                 className="absolute left-0 right-0 top-[15px] hidden h-px origin-left bg-kraft-300 lg:block"
               />
-              {PROCESS.map((step, i) => (
+              {PROCESS.map((step) => (
                 <li key={step.title} className="relative">
-                  <span className="relative flex size-8 items-center justify-center rounded-full border border-kraft-300 bg-forest font-display text-xs font-bold text-kraft-300">
-                    {i + 1}
+                  <span className="relative flex size-8 items-center justify-center rounded-full border border-kraft-300 bg-forest">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-kraft-300" />
                   </span>
                   <p className="mt-4 font-display text-lg font-bold text-ivory">{step.title}</p>
                   <p className="mt-1 max-w-[15rem] text-sm leading-snug text-ivory/70">{step.text}</p>

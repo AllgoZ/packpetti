@@ -171,16 +171,11 @@ export function EnquiryForm({ prefill }: Props) {
                 ['Share your requirement', 'Products, sizes and approximate quantities.'],
                 ['Send it on WhatsApp', 'The form prepares a message with your details. You press send.'],
                 ['Hear back from Packpetti', 'We reply with available options, specifications and pricing.'],
-              ].map(([t, d], i) => (
-                <li key={t} className="grid grid-cols-[2.5rem_1fr]">
-                  <span aria-hidden="true" className="font-display text-sm font-bold text-kraft-700">
-                    0{i + 1}
-                  </span>
+              ].map(([t, d]) => (
+                <li key={t} className="grid grid-cols-[1.25rem_1fr]">
+                  <span aria-hidden="true" className="mt-2 size-1.5 rounded-full bg-kraft" />
                   <div>
-                    <p className="font-display text-base font-bold text-forest">
-                      <span className="sr-only">Step {i + 1}: </span>
-                      {t}
-                    </p>
+                    <p className="font-display text-base font-bold text-forest">{t}</p>
                     <p className="text-sm text-muted">{d}</p>
                   </div>
                 </li>
