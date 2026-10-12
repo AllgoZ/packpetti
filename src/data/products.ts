@@ -127,10 +127,10 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White bagasse round plate with three compartments, top view',
     inventoryConfirmed: false,
     variants: [
-      { id: '9in-3cp', label: '9" 3CP', image: img('compartment-plate-3cp'), specs: [{ label: 'Compartments', value: '3' }] },
-      { id: '10in-3cp', label: '10" 3CP', image: img('compartment-plate-3cp-10'), specs: [{ label: 'Compartments', value: '3' }] },
-      { id: '11in-4cp', label: '11" 4CP', image: img('compartment-plate-4cp'), specs: [{ label: 'Compartments', value: '4' }] },
-      { id: '12in-4cp', label: '12" 4CP', image: img('compartment-plate-4cp'), specs: [{ label: 'Compartments', value: '4' }] },
+      { id: '9in-3cp', label: '9" 3CP', image: img('compartment-plate-3cp'), specs: [] },
+      { id: '10in-3cp', label: '10" 3CP', image: img('compartment-plate-3cp-10'), specs: [] },
+      { id: '11in-4cp', label: '11" 4CP', image: img('compartment-plate-4cp'), specs: [] },
+      { id: '12in-4cp', label: '12" 4CP', image: img('compartment-plate-4cp'), specs: [] },
     ],
   },
   {
@@ -142,10 +142,10 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White bagasse bowl, top view',
     inventoryConfirmed: false,
     variants: [
-      { id: '4oz', label: '4 oz', image: img('bowl-4oz'), specs: [{ label: 'Volume', value: '120 ml' }] },
-      { id: '6oz', label: '6 oz', image: img('bowl-6oz'), specs: [{ label: 'Volume', value: '180 ml' }] },
-      { id: '8oz', label: '8 oz', image: img('bowl-8oz'), specs: [{ label: 'Volume', value: '230 ml' }] },
-      { id: '12oz', label: '12 oz', image: img('bowl-12oz'), specs: [{ label: 'Volume', value: '350 ml' }] },
+      { id: '4oz', label: '4 oz', image: img('bowl-4oz'), specs: [] },
+      { id: '6oz', label: '6 oz', image: img('bowl-6oz'), specs: [] },
+      { id: '8oz', label: '8 oz', image: img('bowl-8oz'), specs: [] },
+      { id: '12oz', label: '12 oz', image: img('bowl-12oz'), specs: [] },
     ],
   },
   {
@@ -157,7 +157,7 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White square bagasse dona bowl',
     inventoryConfirmed: false,
     variants: [
-      { id: '4x4', label: '4×4', specs: [{ label: 'Volume', value: '120 ml' }] },
+      { id: '4x4', label: '4×4', specs: [] },
     ],
   },
 
@@ -171,19 +171,17 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White bagasse meal tray with five compartments',
     inventoryConfirmed: false,
     variants: [
-      { id: '3cp', label: '9" 3CP', image: img('meal-tray-3cp'), specs: [{ label: 'Compartments', value: '3' }, { label: 'Size', value: '255 × 255 mm' }] },
-      { id: '3cp-10', label: '10" 3CP', image: img('meal-tray-3cp-10'), specs: [{ label: 'Compartments', value: '3' }] },
-      { id: '4cp-11', label: '11" 4CP', image: img('meal-tray-4cp-11'), specs: [{ label: 'Compartments', value: '4' }] },
-      { id: '5cp-11', label: '11" 5CP', image: img('meal-tray-5cp-11'), specs: [{ label: 'Compartments', value: '5' }] },
-      { id: '5cp', label: '5"CP', image: img('meal-tray-5cp'), specs: [{ label: 'Compartments', value: '5' }, { label: 'Size', value: '295 × 225 mm' }] },
-      { id: '6cp', label: '12.12" 6CP', image: img('meal-tray-6cp'), specs: [{ label: 'Compartments', value: '6' }] },
+      { id: '3cp', label: '9" 3CP', image: img('meal-tray-3cp'), specs: [] },
+      { id: '3cp-10', label: '10" 3CP', image: img('meal-tray-3cp-10'), specs: [] },
+      { id: '4cp-11', label: '11" 4CP', image: img('meal-tray-4cp-11'), specs: [] },
+      { id: '5cp-11', label: '11" 5CP', image: img('meal-tray-5cp-11'), specs: [] },
+      { id: '5cp', label: '5"CP', image: img('meal-tray-5cp'), specs: [] },
+      { id: '6cp', label: '12.12" 6CP', image: img('meal-tray-6cp'), specs: [] },
       {
         id: 'square',
         label: 'Square Plate',
         image: img('square-plate'),
-        specs: [{ label: 'Compartments', value: 'None' }, { label: 'Size', value: '305 × 305 mm' }],
-        // Source labels this a 6" square plate but lists 305 × 305 mm.
-        verify: 'Size label and dimensions differ in the source — confirm before ordering.',
+        specs: [],
       },
     ],
   },
@@ -196,8 +194,8 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'Natural kraft-coloured heavy-duty bagasse meal tray with five compartments',
     inventoryConfirmed: false,
     variants: [
-      { id: '3cp', label: '8.6" 3CP', image: img('heavy-meal-tray-3cp'), specs: [{ label: 'Compartments', value: '3' }] },
-      { id: '5cp', label: '10.6" 5CP', image: img('heavy-meal-tray-5cp'), specs: [{ label: 'Compartments', value: '5' }] },
+      { id: '3cp', label: '8.6" 3CP', image: img('heavy-meal-tray-3cp'), specs: [] },
+      { id: '5cp', label: '10.6" 5CP', image: img('heavy-meal-tray-5cp'), specs: [] },
     ],
   },
   {
@@ -209,7 +207,7 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White bagasse round plate with nine compartments, top view',
     inventoryConfirmed: false,
     variants: [
-      { id: '12in-9cp', label: '12" 9CP', specs: [{ label: 'Compartments', value: '9' }] },
+      { id: '12in-9cp', label: '12" 9CP', specs: [] },
     ],
   },
 
@@ -236,10 +234,10 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'Natural kraft-coloured rectangular bagasse container with lid',
     inventoryConfirmed: false,
     variants: [
-      { id: '500', label: '500 ml', image: img('rectangle-container-500'), specs: [{ label: 'Length', value: '182 mm' }, { label: 'Width', value: '142 mm' }] },
+      { id: '500', label: '500 ml', image: img('rectangle-container-500'), specs: [] },
       { id: '650', label: '650 ml', image: img('rectangle-container-650'), specs: [] },
-      { id: '750', label: '750 ml', image: img('rectangle-container'), specs: [{ label: 'Length', value: '152 mm' }, { label: 'Width', value: '197 mm' }], verify: 'Length and width appear transposed in the source — confirm.' },
-      { id: '1000', label: '1000 ml', image: img('rectangle-container-1000'), specs: [{ label: 'Length', value: '152 mm' }, { label: 'Width', value: '197 mm' }], verify: 'Source lists the same dimensions as the 750 ml — confirm.' },
+      { id: '750', label: '750 ml', image: img('rectangle-container'), specs: [] },
+      { id: '1000', label: '1000 ml', image: img('rectangle-container-1000'), specs: [] },
     ],
   },
 
@@ -253,10 +251,10 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White hinged bagasse burger box, open',
     inventoryConfirmed: false,
     variants: [
-      { id: '6x6', label: '6×6 Burger', image: img('clamshell-burger-6x6'), specs: [{ label: 'Length', value: '153 mm' }, { label: 'Width', value: '153 mm' }] },
-      { id: '8x8', label: '8×8 Burger', image: img('clamshell-burger-8x8'), specs: [{ label: 'Length', value: '153 mm' }, { label: 'Width', value: '153 mm' }], verify: 'Source lists the same length and width as the 6×6 — confirm.' },
-      { id: '9x9', label: '9×9 Sandwich', image: img('clamshell-sandwich-9x9'), specs: [{ label: 'Length', value: '230 mm' }, { label: 'Width', value: '235 mm' }] },
-      { id: '9x6', label: '9×6 Subway', image: img('clamshell-subway-9x6'), specs: [{ label: 'Length', value: '240 mm' }, { label: 'Width', value: '145 mm' }] },
+      { id: '6x6', label: '6×6 Burger', image: img('clamshell-burger-6x6'), specs: [] },
+      { id: '8x8', label: '8×8 Burger', image: img('clamshell-burger-8x8'), specs: [] },
+      { id: '9x9', label: '9×9 Sandwich', image: img('clamshell-sandwich-9x9'), specs: [] },
+      { id: '9x6', label: '9×6 Subway', image: img('clamshell-subway-9x6'), specs: [] },
     ],
   },
   {
@@ -268,8 +266,8 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White hinged bagasse clamshell with three compartments, open',
     inventoryConfirmed: false,
     variants: [
-      { id: '8x8', label: '8×8 3CP', image: img('clamshell-3cp-8x8'), specs: [{ label: 'Length', value: '205 mm' }, { label: 'Width', value: '205 mm' }] },
-      { id: '9x9', label: '9×9 3CP', image: img('clamshell-3cp-9x9'), specs: [{ label: 'Length', value: '230 mm' }, { label: 'Width', value: '230 mm' }] },
+      { id: '8x8', label: '8×8 3CP', image: img('clamshell-3cp-8x8'), specs: [] },
+      { id: '9x9', label: '9×9 3CP', image: img('clamshell-3cp-9x9'), specs: [] },
     ],
   },
 
@@ -284,7 +282,7 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     inventoryConfirmed: false,
     note: 'Source lists cup weights in an unclear unit; weights are available on request.',
     variants: [
-      { id: '60', label: '60 ml', image: img('sauce-cup-60'), specs: [{ label: 'Capacity', value: '60 ml' }, { label: 'Size', value: '60 mm' }] },
+      { id: '60', label: '60 ml', image: img('sauce-cup-60'), specs: [] },
     ],
   },
   {
@@ -297,8 +295,8 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     inventoryConfirmed: false,
     note: 'Source lists cup weights in an unclear unit; weights are available on request.',
     variants: [
-      { id: 'tea-55', label: 'Tea Cup', image: img('sauce-cup-55'), specs: [{ label: 'Capacity', value: '55 ml' }, { label: 'Size', value: '47 mm' }] },
-      { id: '250', label: '250 ml', image: img('coffee-cup-250'), specs: [{ label: 'Capacity', value: '250 ml' }, { label: 'Size', value: '80 mm' }] },
+      { id: 'tea-55', label: '55 ml', image: img('sauce-cup-55'), specs: [] },
+      { id: '250', label: '250 ml', image: img('coffee-cup-250'), specs: [] },
     ],
   },
 ]

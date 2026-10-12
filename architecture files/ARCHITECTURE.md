@@ -106,8 +106,9 @@ Static data:
 
 - `src/data/products.ts`: `CATEGORIES` (5: plates-bowls, meal-trays, takeaway, clamshells, cups-lids)
   and `PRODUCT_FAMILIES` (13 families, each with one or more size `variants` and specs). The catalogue was
-  trimmed on 2026-10-12 to the products shown in `product photos/PackPetti/`; diameter and depth specs are not
-  shown (round-plate diameters stay in the data as `hidden` specs that only drive the relative-size scaling).
+  trimmed on 2026-10-12 to the products shown in `product photos/PackPetti/`; no specification list is shown any more
+  (the product range shows only the Size / format chips); every variant's `specs` is empty, except the round-plate
+  diameters, which stay in the data as `hidden` specs that only drive the relative-size scaling.
   Helpers: `categoryById`, `familiesIn`, `formatCount`. Every family has `inventoryConfirmed: false`
   until Packpetti confirms stock. A variant's `verify` note surfaces a "please confirm" flag in the UI.
   `img(file)` turns a file name into `/images/products/<file>.webp`.
@@ -167,7 +168,7 @@ Two image families, both under `public/images/` and both referenced from data or
   plate 9" 3CP/10" 3CP/11-12" 4CP; 16/17/18/24/20/19 meal tray 9" 3CP/10" 3CP/11" 4CP/11" 5CP/`5"CP` (the photo says
   12" 5 compartments)/"12.12" 6CP" (caption as supplied); 22/21 heavy-duty tray 8.6" 3CP/10.6" 5CP; 23 round meal
   plate 12" 9CP; 25/26/30/29 clamshell 6x6/9x6/8x8/9x9; 27/28 3-compartment clamshell 8x8/9x9; 32 coffee cup 250 ml;
-  34 coffee cup family, "Tea Cup" variant (55 ml); 33 sauce cup 60 ml.
+  34 coffee cup family, 55 ml variant; 33 sauce cup 60 ml.
   Categories follow the client's folders: the 9-compartment round plate sits under Meal Trays (folder "Meal tray",
   caption "Round Meal Plate"), not Plates & Bowls; the square plate stays under Meal Trays (folder "Tray").
 - **Products without a supplied photograph were removed on 2026-10-12** (bowl 24/32 oz and lid, antileak 1000 ml
@@ -225,8 +226,6 @@ Netlify, Cloudflare Pages, Vercel (Vite preset) or any web server.
 
 - Packpetti has not confirmed which families and sizes it stocks, so `inventoryConfirmed` is `false`
   everywhere and the catalogue mirrors a third-party list.
-- Specifications flagged "confirm" (antileak containers, 750/1000 ml rectangle containers, 8x8 burger box,
-  square plate, bowl lid, cup weights, sipper lid depth) are unverified.
 - Environmental and compostability claims from the source catalogue were deliberately left out until
   certificates or test reports exist.
 - Hero and scene photography is third-party and needs replacing before a public launch, with the hero first.
