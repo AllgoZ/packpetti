@@ -120,17 +120,6 @@ export function MaterialStory() {
                   />
                 </Parallax>
               </ImageReveal>
-              <Reveal delay={0.35} y={26} className="pointer-events-none absolute -bottom-6 -left-3 w-[30%] max-w-[230px] lg:-left-10">
-                <img
-                  src="/images/products/antileak-container-500.webp"
-                  alt="Natural-coloured moulded bagasse container, top view"
-                  loading="lazy"
-                  decoding="async"
-                  width={490}
-                  height={490}
-                  className="w-full drop-shadow-[0_18px_22px_rgba(0,0,0,0.4)]"
-                />
-              </Reveal>
             </div>
           </div>
 

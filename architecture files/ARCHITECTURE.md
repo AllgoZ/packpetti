@@ -105,7 +105,7 @@ Flow in practice:
 Static data:
 
 - `src/data/products.ts`: `CATEGORIES` (5: plates-bowls, meal-trays, takeaway, clamshells, cups-lids)
-  and `PRODUCT_FAMILIES` (10 families, each with one or more size `variants` and specs). The catalogue was
+  and `PRODUCT_FAMILIES` (13 families, each with one or more size `variants` and specs). The catalogue was
   trimmed on 2026-10-12 to the products shown in `product photos/PackPetti/`; diameter and depth specs are not
   shown (round-plate diameters stay in the data as `hidden` specs that only drive the relative-size scaling).
   Helpers: `categoryById`, `familiesIn`, `formatCount`. Every family has `inventoryConfirmed: false`
@@ -152,24 +152,29 @@ Two image families, both under `public/images/` and both referenced from data or
 
 | Folder | Contents | Used by |
 |---|---|---|
-| `products/` | transparent, square, product-only webp cut-outs | `products.ts`, Collection stages, MaterialStory |
+| `products/` | transparent, square, product-only webp cut-outs | `products.ts`, Collection stages |
 | `scenes/` | lifestyle photographs | `scenes.ts` |
 
 **Provenance as of 2026-10-12**
-- **22 product cut-outs come from Packpetti's own supplied photographs** in `product photos/PackPetti/`.
-  The originals are JPGs on a black background with product-name captions. They were processed into
-  transparent, caption-free, square webp files (about 800 px) by removing the black background, cropping out
-  the caption rows, and cropping to the product. The processing script was a one-off and is not in the repo,
-  so repeat it by hand or script for new photos. Updated files: bowl 6/8/12 oz; antileak-container 500/750;
-  rectangle-container; round-plate; compartment-plate 3cp/4cp/9cp; meal-tray 3cp/5cp; square-plate; all
-  six clamshell files; coffee-cup-250; sauce-cup 55/60.
+- **All 34 supplied photographs are accounted for (audited 2026-10-12), and all 34 product cut-outs come from them.**
+  The originals are JPGs (1536x1024) on a black background with product-name captions. Each is processed into a
+  transparent, caption-free, square webp (800 px, longest side 770 px, centred) by cutting off the caption rows,
+  flood-filling the black background from the border to transparent, eroding the edge by a few pixels, and cropping
+  to the product. The script is a one-off and is not in the repo. Where a caption's white glow overlaps the product
+  (the 10" 3CP plate, the 11" 4CP tray) the cut is made just above the caption, which leaves a slightly flat bottom.
+  Photo to product (WA00nn): 01 Dona 4x4; 02/03/04 bowl 12/8/6 oz; 31 bowl 4 oz; 05/06/10/07 rectangle container
+  500/650/750/1000 ml; 09/08 round container 500/750 ml; 11 round plate; 12 square plate; 15/14/13 compartment
+  plate 9" 3CP/10" 3CP/11-12" 4CP; 16/17/18/24/20/19 meal tray 9" 3CP/10" 3CP/11" 4CP/11" 5CP/`5"CP` (the photo says
+  12" 5 compartments)/"12.12" 6CP" (caption as supplied); 22/21 heavy-duty tray 8.6" 3CP/10.6" 5CP; 23 round meal
+  plate 12" 9CP; 25/26/30/29 clamshell 6x6/9x6/8x8/9x9; 27/28 3-compartment clamshell 8x8/9x9; 32 coffee cup 250 ml;
+  34 coffee cup family, "Tea Cup" variant (55 ml); 33 sauce cup 60 ml.
+  Categories follow the client's folders: the 9-compartment round plate sits under Meal Trays (folder "Meal tray",
+  caption "Round Meal Plate"), not Plates & Bowls; the square plate stays under Meal Trays (folder "Tray").
 - **Products without a supplied photograph were removed on 2026-10-12** (bowl 24/32 oz and lid, antileak 1000 ml
   and the separate lid entries, coffee-cup 220 ml, sauce-cup 30 ml, sipper lids, paper cups and straws, all
   cutlery, and the 750 ml 2CP rectangle container), along with their image files. Every remaining cut-out is
   from the supplied photographs.
 - **All nine scene photographs are still interim third-party images.**
-- Supplied photographs with no matching product entry: 0001 (4x4 dona), 0006 (650 ml container),
-  0014, 0017-0019, 0021, 0022, 0024 (extra plate and tray sizes) and 0031 (4 oz bowl).
 - `docs/image-manifest.md` still describes every image as third-party and predates the swap. Update it
   when the remaining images are replaced.
 
@@ -226,5 +231,4 @@ Netlify, Cloudflare Pages, Vercel (Vite preset) or any web server.
   certificates or test reports exist.
 - Hero and scene photography is third-party and needs replacing before a public launch, with the hero first.
 - No form backend: enquiries only exist if the visitor sends the WhatsApp message or email.
-- Variants that share one product photo (for example the 10" 3CP plate, and the rectangle container sizes)
-  would each need a new `image` entry in `products.ts` to show their own picture.
+- Variants that share one product photo (the 11" and 12" 4CP compartment plates share photo 13) show the same picture.
