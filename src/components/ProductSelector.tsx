@@ -121,6 +121,7 @@ export function ProductSelector({ filter, familyId, onFilterChange, onFamilyChan
   const image = variant.image ?? family.image
   const scale = relativeScale(family, variant)
   const note = variant.verify ?? family.note
+  const visibleSpecs = variant.specs.filter((s) => !s.hidden)
 
   const step = (dir: 1 | -1) => onFamilyChange(list[(index + dir + list.length) % list.length].id)
   const scrollRail = (dir: 1 | -1) => railRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' })
@@ -283,22 +284,24 @@ export function ProductSelector({ filter, familyId, onFilterChange, onFamilyChan
               </div>
             )}
 
-            <motion.dl
-              key={`${family.id}-${variant.id}`}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, ease: EASE }}
-              className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3"
-            >
-              {variant.specs.map((s) => (
-                <div key={s.label}>
-                  <dt className="text-xs font-medium uppercase tracking-[0.1em] text-muted">{s.label}</dt>
-                  <dd className="mt-1 font-display text-[1.45rem] font-bold leading-tight tracking-[-0.02em] text-forest">
-                    {s.value}
-                  </dd>
-                </div>
-              ))}
-            </motion.dl>
+            {visibleSpecs.length > 0 && (
+              <motion.dl
+                key={`${family.id}-${variant.id}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3"
+              >
+                {visibleSpecs.map((s) => (
+                  <div key={s.label}>
+                    <dt className="text-xs font-medium uppercase tracking-[0.1em] text-muted">{s.label}</dt>
+                    <dd className="mt-1 font-display text-[1.45rem] font-bold leading-tight tracking-[-0.02em] text-forest">
+                      {s.value}
+                    </dd>
+                  </div>
+                ))}
+              </motion.dl>
+            )}
 
             {note && (
               <p className="mt-5 flex gap-2 text-xs leading-relaxed text-kraft-700">

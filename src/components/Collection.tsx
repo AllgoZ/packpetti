@@ -62,19 +62,11 @@ const PANELS: PanelDef[] = [
   },
   {
     id: 'cups-lids',
-    place: 'lg:col-span-7',
+    place: 'lg:col-span-12',
     mobileAspect: 'aspect-[4/3.3]',
     kind: 'photo',
     sceneId: 'cups',
     objectPosition: '50% 46%',
-  },
-  {
-    id: 'cutlery',
-    place: 'lg:col-span-5',
-    mobileAspect: 'aspect-[4/3.3]',
-    kind: 'photo',
-    sceneId: 'cutlery',
-    objectPosition: '50% 62%',
   },
 ]
 

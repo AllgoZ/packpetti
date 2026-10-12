@@ -51,7 +51,9 @@
     }
   }
   body {
-    background: var(--color-ivory);
+    background-color: var(--color-ivory);
+    background-image: url('/images/bg-pattern.webp');
+    background-size: 420px;
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: 1rem;

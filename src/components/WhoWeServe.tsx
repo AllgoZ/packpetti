@@ -30,7 +30,7 @@ const SEGMENTS: { id: string; name: string; text: string; families: string[] }[]
     id: 'caterers',
     name: 'Caterers',
     text: 'Events where hundreds of plates go out at once and service has to keep moving.',
-    families: ['compartment-plate', 'meal-tray', 'paper-cutlery'],
+    families: ['compartment-plate', 'meal-tray'],
   },
   {
     id: 'canteens',
@@ -42,7 +42,7 @@ const SEGMENTS: { id: string; name: string; text: string; families: string[] }[]
     id: 'cafeterias',
     name: 'Cafeterias',
     text: 'Quick-service food and beverages, often eaten on the go.',
-    families: ['coffee-cup', 'sipper-lid', 'clamshell-box'],
+    families: ['coffee-cup', 'clamshell-box'],
   },
   {
     id: 'takeaway',

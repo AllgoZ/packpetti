@@ -67,44 +67,24 @@ export function FinalCTA() {
           </Reveal>
         </div>
 
-        {/* Product composition that bleeds off the section edge */}
+        {/* Product photograph that bleeds off the section edge */}
         <div
           aria-hidden="true"
           className="relative mt-6 h-[300px] sm:h-[380px] lg:absolute lg:inset-y-0 lg:right-6 lg:mt-0 lg:h-auto lg:w-[42%]"
         >
-          <Reveal y={40} className="absolute -right-[8%] top-[6%] w-[72%] lg:top-[12%]">
-            <img
-              src="/images/products/round-plate.webp"
-              alt=""
-              loading="lazy"
-              decoding="async"
-              width={908}
-              height={908}
-              className="w-full drop-shadow-[0_30px_36px_rgba(0,0,0,0.4)]"
-            />
-          </Reveal>
-          <Reveal y={46} delay={0.12} className="absolute -bottom-[14%] left-[2%] w-[48%] lg:-bottom-[6%]">
-            <img
-              src="/images/products/clamshell-burger-8x8.webp"
-              alt=""
-              loading="lazy"
-              decoding="async"
-              width={616}
-              height={616}
-              className="w-full drop-shadow-[0_22px_26px_rgba(0,0,0,0.4)]"
-            />
-          </Reveal>
-          <Reveal y={50} delay={0.22} className="absolute -bottom-[12%] right-[6%] w-[30%] lg:-bottom-[8%]">
-            <img
-              src="/images/products/coffee-cup-250.webp"
-              alt=""
-              loading="lazy"
-              decoding="async"
-              width={650}
-              height={650}
-              className="w-full drop-shadow-[0_18px_22px_rgba(0,0,0,0.4)]"
-            />
-          </Reveal>
+          <div className="absolute inset-y-0 -right-[4%] flex w-[96%] items-center">
+            <Reveal y={40} className="w-full">
+              <img
+                src="/images/collection.webp"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width={1758}
+                height={884}
+                className="w-full drop-shadow-[0_30px_36px_rgba(0,0,0,0.4)]"
+              />
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
@@ -114,11 +94,11 @@ export function FinalCTA() {
 export function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer id="contact" className="bg-forest-950 text-ivory/80">
+    <footer id="contact" className="bg-beige text-ink/80">
       <div className="container-wide grid gap-12 py-16 md:grid-cols-12 lg:py-20">
         <div className="md:col-span-5">
           <img
-            src="/images/logo-reversed.png"
+            src="/images/logo-transparent.png"
             alt="Packpetti — Perfectly Packed & Pettified."
             loading="lazy"
             decoding="async"
@@ -134,17 +114,17 @@ export function Footer() {
         </div>
 
         <nav aria-label="Footer" className="md:col-span-3">
-          <p className="t-eyebrow text-kraft-300">Explore</p>
+          <p className="t-eyebrow text-kraft-700">Explore</p>
           <ul className="mt-4 space-y-1">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="inline-flex min-h-9 items-center text-sm hover:text-ivory">
+                <a href={l.href} className="inline-flex min-h-9 items-center text-sm hover:text-forest">
                   <span className="link-underline">{l.label}</span>
                 </a>
               </li>
             ))}
             <li>
-              <a href="#faq" className="inline-flex min-h-9 items-center text-sm hover:text-ivory">
+              <a href="#faq" className="inline-flex min-h-9 items-center text-sm hover:text-forest">
                 <span className="link-underline">FAQ</span>
               </a>
             </li>
@@ -152,11 +132,11 @@ export function Footer() {
         </nav>
 
         <div className="md:col-span-4">
-          <p className="t-eyebrow text-kraft-300">Contact</p>
+          <p className="t-eyebrow text-kraft-700">Contact</p>
           <ul className="mt-4 space-y-1 text-sm">
             <li>
-              <a href={telHref} className="inline-flex min-h-10 items-center gap-3 hover:text-ivory">
-                <Phone aria-hidden="true" className="size-4 text-kraft-300" />
+              <a href={telHref} className="inline-flex min-h-10 items-center gap-3 hover:text-forest">
+                <Phone aria-hidden="true" className="size-4 text-kraft" />
                 {SITE.phoneDisplay}
               </a>
             </li>
@@ -165,29 +145,29 @@ export function Footer() {
                 href={whatsappUrl(generalEnquiryMessage())}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-10 items-center gap-3 hover:text-ivory"
+                className="inline-flex min-h-10 items-center gap-3 hover:text-forest"
               >
-                <MessageCircle aria-hidden="true" className="size-4 text-kraft-300" />
+                <MessageCircle aria-hidden="true" className="size-4 text-kraft" />
                 WhatsApp {SITE.phoneDisplay}
               </a>
             </li>
             <li>
-              <a href={`mailto:${SITE.email}`} className="inline-flex min-h-10 items-center gap-3 hover:text-ivory">
-                <Mail aria-hidden="true" className="size-4 text-kraft-300" />
+              <a href={`mailto:${SITE.email}`} className="inline-flex min-h-10 items-center gap-3 hover:text-forest">
+                <Mail aria-hidden="true" className="size-4 text-kraft" />
                 {SITE.email}
               </a>
             </li>
             <li>
-              <a href={SITE.url} className="inline-flex min-h-10 items-center gap-3 hover:text-ivory">
-                <Globe aria-hidden="true" className="size-4 text-kraft-300" />
+              <a href={SITE.url} className="inline-flex min-h-10 items-center gap-3 hover:text-forest">
+                <Globe aria-hidden="true" className="size-4 text-kraft" />
                 packpetti.com
               </a>
             </li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-ivory/10">
-        <div className="container-wide flex flex-col gap-2 py-6 text-xs text-ivory/60 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-line-strong">
+        <div className="container-wide flex flex-col gap-2 py-6 text-xs text-ink/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {SITE.name}. All rights reserved.
           </p>

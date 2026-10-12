@@ -5,7 +5,7 @@ import { LineReveal } from './motion/LineReveal'
 const PRINCIPLES = [
   {
     title: 'Formats for real service',
-    text: 'Plates, trays, containers, cups and cutlery for everyday serving and takeaway.',
+    text: 'Plates, trays, containers and cups for everyday serving and takeaway.',
   },
   {
     title: 'Bulk enquiries welcome',

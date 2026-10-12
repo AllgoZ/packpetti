@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { useRef, type ReactNode } from 'react'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { EASE_OUT } from '../../lib/motion'
 
 interface LineRevealProps {
@@ -14,6 +14,34 @@ interface LineRevealProps {
   /** Animate when scrolled into view instead of on mount. */
   inView?: boolean
   id?: string
+}
+
+interface LineProps {
+  line: ReactNode
+  className: string
+  delay: number
+  inView: boolean
+}
+
+/**
+ * One masked line. In-view is read from the stationary mask, not the sliding text: a line that wraps onto
+ * several visual lines is pushed fully out of its mask, so observing the text itself never fires.
+ */
+function Line({ line, className, delay, inView }: LineProps) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const seen = useInView(ref, { once: true, margin: '0px 0px -8% 0px' })
+  return (
+    <span ref={ref} className="line-mask">
+      <motion.span
+        className={className}
+        initial={{ y: '112%' }}
+        animate={{ y: !inView || seen ? 0 : '112%' }}
+        transition={{ duration: 0.95, ease: EASE_OUT, delay }}
+      >
+        {line}
+      </motion.span>
+    </span>
+  )
 }
 
 /** Staggered masked-line text reveal. Renders static text when reduced motion is requested. */
@@ -33,23 +61,12 @@ export function LineReveal({
     <Tag id={id} className={className}>
       {lines.map((line, i) => {
         const cls = `block ${lineClassNames?.[i] ?? ''}`
-        return (
+        return reduce ? (
           <span key={i} className="line-mask">
-            {reduce ? (
-              <span className={cls}>{line}</span>
-            ) : (
-              <motion.span
-                className={cls}
-                initial={{ y: '112%' }}
-                {...(inView
-                  ? { whileInView: { y: 0 }, viewport: { once: true, margin: '0px 0px -8% 0px' } }
-                  : { animate: { y: 0 } })}
-                transition={{ duration: 0.95, ease: EASE_OUT, delay: delay + i * stagger }}
-              >
-                {line}
-              </motion.span>
-            )}
+            <span className={cls}>{line}</span>
           </span>
+        ) : (
+          <Line key={i} line={line} className={cls} delay={delay + i * stagger} inView={inView} />
         )
       })}
     </Tag>

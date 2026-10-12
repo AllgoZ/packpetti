@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { EASE, EASE_OUT } from '../lib/motion'
+import { EASE_OUT } from '../lib/motion'
 import { scene } from '../data/scenes'
 import { ImageReveal } from './motion/ImageReveal'
 import { LineReveal } from './motion/LineReveal'
@@ -95,27 +95,6 @@ export function Hero() {
               />
             </Parallax>
           </ImageReveal>
-
-          {/* A real product cut-out overlapping the arch for depth */}
-          <motion.div
-            {...(reduce
-              ? {}
-              : {
-                  initial: { opacity: 0, y: 28 },
-                  animate: { opacity: 1, y: 0 },
-                  transition: { duration: 0.9, ease: EASE, delay: 1.15 },
-                })}
-            className="pointer-events-none absolute -bottom-3 -left-2 w-[30%] max-w-[230px] lg:bottom-32 lg:-left-14"
-          >
-            <span className="ground-shadow" aria-hidden="true" />
-            <img
-              src="/images/products/antileak-container-750.webp"
-              alt="Kraft-coloured round bagasse takeaway container"
-              width={553}
-              height={553}
-              className="relative w-full drop-shadow-[0_16px_20px_rgba(0,0,0,0.35)]"
-            />
-          </motion.div>
         </div>
 
         {/* Supporting copy and actions */}

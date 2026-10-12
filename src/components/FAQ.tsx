@@ -17,7 +17,7 @@ const FAQS: { q: string; a: ReactNode }[] = [
     a: (
       <>
         Round and compartment plates, bowls, square meal trays, round and rectangular takeaway containers with lids,
-        clamshell boxes, sauce and coffee cups, sipper lids, and paper or bio-plastic cutlery. See the{' '}
+        clamshell boxes, and sauce and coffee cups. See the{' '}
         <a href="#catalogue" className="font-medium text-forest underline underline-offset-2">
           product range
         </a>{' '}

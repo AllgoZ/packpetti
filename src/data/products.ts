@@ -15,7 +15,7 @@
  * To remove a product: delete its family (or variant) object.
  */
 
-export type CategoryId = 'plates-bowls' | 'meal-trays' | 'takeaway' | 'clamshells' | 'cups-lids' | 'cutlery'
+export type CategoryId = 'plates-bowls' | 'meal-trays' | 'takeaway' | 'clamshells' | 'cups-lids'
 
 export interface Category {
   id: CategoryId
@@ -29,6 +29,8 @@ export interface Category {
 export interface Spec {
   label: string
   value: string
+  /** Kept only to drive the on-screen scale; not shown in the specification list. */
+  hidden?: boolean
 }
 
 export interface Variant {
@@ -91,14 +93,8 @@ export const CATEGORIES: Category[] = [
   {
     id: 'cups-lids',
     name: 'Cups & Lids',
-    summary: 'Sauce cups, coffee cups and sipper lids for portions and beverages.',
-    heroImages: [img('coffee-cup-250'), img('sauce-cup-55'), img('sipper-lid-90')],
-  },
-  {
-    id: 'cutlery',
-    name: 'Cutlery',
-    summary: 'Paper and bio-plastic spoons, forks and knives to complete the order.',
-    heroImages: [img('paper-spoon'), img('paper-fork'), img('paper-knife')],
+    summary: 'Sauce cups and coffee cups for portions and beverages.',
+    heroImages: [img('coffee-cup-250'), img('sauce-cup-55')],
   },
 ]
 
@@ -114,12 +110,12 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     inventoryConfirmed: false,
     scaleSpec: 'Diameter',
     variants: [
-      { id: '6in', label: '6"', specs: [{ label: 'Diameter', value: '153 mm' }, { label: 'Depth', value: '18 mm' }] },
-      { id: '7in', label: '7"', specs: [{ label: 'Diameter', value: '175 mm' }, { label: 'Depth', value: '20 mm' }] },
-      { id: '9in', label: '9"', specs: [{ label: 'Diameter', value: '229 mm' }, { label: 'Depth', value: '20 mm' }] },
-      { id: '10in', label: '10"', specs: [{ label: 'Diameter', value: '255 mm' }, { label: 'Depth', value: '22 mm' }] },
-      { id: '11in', label: '11"', specs: [{ label: 'Diameter', value: '275 mm' }, { label: 'Depth', value: '25 mm' }] },
-      { id: '12in', label: '12"', specs: [{ label: 'Diameter', value: '305 mm' }, { label: 'Depth', value: '25.5 mm' }] },
+      { id: '6in', label: '6"', specs: [{ label: 'Diameter', value: '153 mm', hidden: true }] },
+      { id: '7in', label: '7"', specs: [{ label: 'Diameter', value: '175 mm', hidden: true }] },
+      { id: '9in', label: '9"', specs: [{ label: 'Diameter', value: '229 mm', hidden: true }] },
+      { id: '10in', label: '10"', specs: [{ label: 'Diameter', value: '255 mm', hidden: true }] },
+      { id: '11in', label: '11"', specs: [{ label: 'Diameter', value: '275 mm', hidden: true }] },
+      { id: '12in', label: '12"', specs: [{ label: 'Diameter', value: '305 mm', hidden: true }] },
     ],
   },
   {
@@ -131,35 +127,25 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White bagasse round plate with three compartments, top view',
     inventoryConfirmed: false,
     variants: [
-      { id: '9in-3cp', label: '9" 3CP', image: img('compartment-plate-3cp'), specs: [{ label: 'Compartments', value: '3' }, { label: 'Diameter', value: '229 mm' }, { label: 'Depth', value: '20 mm' }] },
-      { id: '10in-3cp', label: '10" 3CP', image: img('compartment-plate-3cp'), specs: [{ label: 'Compartments', value: '3' }, { label: 'Diameter', value: '255 mm' }, { label: 'Depth', value: '22 mm' }] },
-      { id: '11in-4cp', label: '11" 4CP', image: img('compartment-plate-4cp'), specs: [{ label: 'Compartments', value: '4' }, { label: 'Diameter', value: '272 mm' }, { label: 'Depth', value: '25 mm' }] },
-      { id: '12in-4cp', label: '12" 4CP', image: img('compartment-plate-4cp'), specs: [{ label: 'Compartments', value: '4' }, { label: 'Diameter', value: '305 mm' }, { label: 'Depth', value: '25.5 mm' }] },
-      { id: '12in-9cp', label: '12" 9CP', image: img('compartment-plate-9cp'), specs: [{ label: 'Compartments', value: '9' }, { label: 'Diameter', value: '318 mm' }, { label: 'Depth', value: '25.5 mm' }] },
+      { id: '9in-3cp', label: '9" 3CP', image: img('compartment-plate-3cp'), specs: [{ label: 'Compartments', value: '3' }] },
+      { id: '10in-3cp', label: '10" 3CP', image: img('compartment-plate-3cp'), specs: [{ label: 'Compartments', value: '3' }] },
+      { id: '11in-4cp', label: '11" 4CP', image: img('compartment-plate-4cp'), specs: [{ label: 'Compartments', value: '4' }] },
+      { id: '12in-4cp', label: '12" 4CP', image: img('compartment-plate-4cp'), specs: [{ label: 'Compartments', value: '4' }] },
+      { id: '12in-9cp', label: '12" 9CP', image: img('compartment-plate-9cp'), specs: [{ label: 'Compartments', value: '9' }] },
     ],
   },
   {
     id: 'bowl',
     name: 'Bowl',
     category: 'plates-bowls',
-    description: 'Round bowls from 180 ml to 1000 ml, with a lid for the 24 and 32 oz sizes.',
+    description: 'Round bowls from 180 ml to 350 ml in three sizes.',
     image: img('bowl-12oz'),
     imageAlt: 'White bagasse bowl, top view',
     inventoryConfirmed: false,
     variants: [
-      { id: '6oz', label: '6 oz', image: img('bowl-6oz'), specs: [{ label: 'Volume', value: '180 ml' }, { label: 'Diameter', value: '108 mm' }, { label: 'Depth', value: '38 mm' }] },
-      { id: '8oz', label: '8 oz', image: img('bowl-8oz'), specs: [{ label: 'Volume', value: '230 ml' }, { label: 'Diameter', value: '134 mm' }, { label: 'Depth', value: '39 mm' }] },
-      { id: '12oz', label: '12 oz', image: img('bowl-12oz'), specs: [{ label: 'Volume', value: '350 ml' }, { label: 'Diameter', value: '134 mm' }, { label: 'Depth', value: '44 mm' }] },
-      { id: '24oz', label: '24 oz', image: img('bowl-24oz'), specs: [{ label: 'Volume', value: '750 ml' }, { label: 'Diameter', value: '210 mm' }, { label: 'Depth', value: '47.9 mm' }] },
-      { id: '32oz', label: '32 oz', image: img('bowl-32oz'), specs: [{ label: 'Volume', value: '1000 ml' }, { label: 'Diameter', value: '210 mm' }, { label: 'Depth', value: '58.9 mm' }] },
-      {
-        id: 'lid-24-32',
-        label: '24/32 oz Lid',
-        image: img('bowl-lid'),
-        specs: [{ label: 'Fits', value: '24 oz & 32 oz bowls' }, { label: 'Diameter', value: '210 mm' }],
-        // Source repeats the 32 oz bowl's depth and volume for the lid; omitted.
-        verify: 'Lid depth not listed — confirm with our team.',
-      },
+      { id: '6oz', label: '6 oz', image: img('bowl-6oz'), specs: [{ label: 'Volume', value: '180 ml' }] },
+      { id: '8oz', label: '8 oz', image: img('bowl-8oz'), specs: [{ label: 'Volume', value: '230 ml' }] },
+      { id: '12oz', label: '12 oz', image: img('bowl-12oz'), specs: [{ label: 'Volume', value: '350 ml' }] },
     ],
   },
 
@@ -173,13 +159,13 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White bagasse meal tray with five compartments',
     inventoryConfirmed: false,
     variants: [
-      { id: '3cp', label: '9" 3CP', image: img('meal-tray-3cp'), specs: [{ label: 'Compartments', value: '3' }, { label: 'Size', value: '255 × 255 mm' }, { label: 'Depth', value: '25 mm' }] },
-      { id: '5cp', label: '5CP', image: img('meal-tray-5cp'), specs: [{ label: 'Compartments', value: '5' }, { label: 'Size', value: '295 × 225 mm' }, { label: 'Depth', value: '33 mm' }] },
+      { id: '3cp', label: '9" 3CP', image: img('meal-tray-3cp'), specs: [{ label: 'Compartments', value: '3' }, { label: 'Size', value: '255 × 255 mm' }] },
+      { id: '5cp', label: '5"CP', image: img('meal-tray-5cp'), specs: [{ label: 'Compartments', value: '5' }, { label: 'Size', value: '295 × 225 mm' }] },
       {
         id: 'square',
         label: 'Square Plate',
         image: img('square-plate'),
-        specs: [{ label: 'Compartments', value: 'None' }, { label: 'Size', value: '305 × 305 mm' }, { label: 'Depth', value: '33 mm' }],
+        specs: [{ label: 'Compartments', value: 'None' }, { label: 'Size', value: '305 × 305 mm' }],
         // Source labels this a 6" square plate but lists 305 × 305 mm.
         verify: 'Size label and dimensions differ in the source — confirm before ordering.',
       },
@@ -195,33 +181,24 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     image: img('antileak-container-750'),
     imageAlt: 'Natural kraft-coloured round bagasse takeaway container, side view',
     inventoryConfirmed: false,
-    note: 'Source lists depth and diameter under swapped labels; values shown here are corrected.',
     variants: [
-      { id: '500', label: '500 ml', image: img('antileak-container-500'), specs: [{ label: 'Diameter', value: '158 mm' }, { label: 'Depth', value: '56 mm' }], verify: 'Corrected from source — please confirm.' },
-      { id: '500-lid', label: '500 ml Lid', image: img('antileak-lid'), specs: [{ label: 'Diameter', value: '157 mm' }, { label: 'Depth', value: '7 mm' }], verify: 'Corrected from source — please confirm.' },
-      { id: '750', label: '750 ml', image: img('antileak-container-750'), specs: [{ label: 'Diameter', value: '175 mm' }, { label: 'Depth', value: '65 mm' }], verify: 'Corrected from source — please confirm.' },
-      { id: '750-lid', label: '750 ml Lid', image: img('antileak-lid'), specs: [{ label: 'Diameter', value: '174 mm' }, { label: 'Depth', value: '7 mm' }], verify: 'Corrected from source — please confirm.' },
-      { id: '1000', label: '1000 ml', image: img('antileak-container-1000'), specs: [{ label: 'Diameter', value: '197 mm' }, { label: 'Depth', value: '65 mm' }], verify: 'Corrected from source — please confirm.' },
-      { id: '1000-lid', label: '1000 ml Lid', image: img('antileak-lid'), specs: [{ label: 'Diameter', value: '196 mm' }, { label: 'Depth', value: '7 mm' }], verify: 'Corrected from source — please confirm.' },
+      { id: '500', label: '500 ml', image: img('antileak-container-500'), specs: [] },
+      { id: '750', label: '750 ml', image: img('antileak-container-750'), specs: [] },
     ],
   },
   {
     id: 'rectangle-container',
     name: 'Rectangle Takeaway Container',
     category: 'takeaway',
-    description: 'Rectangular containers in 500, 750 and 1000 ml, including a two-compartment option.',
+    description: 'Rectangular containers in 500, 750 and 1000 ml.',
     image: img('rectangle-container'),
     imageAlt: 'Natural kraft-coloured rectangular bagasse container with lid',
     inventoryConfirmed: false,
     note: 'One representative photograph is used for all sizes.',
     variants: [
-      { id: '500', label: '500 ml', specs: [{ label: 'Length', value: '182 mm' }, { label: 'Width', value: '142 mm' }, { label: 'Depth', value: '45 mm' }] },
-      { id: '500-lid', label: '500 ml Lid', specs: [{ label: 'Length', value: '180 mm' }, { label: 'Width', value: '141 mm' }, { label: 'Depth', value: '8 mm' }] },
-      { id: '750', label: '750 ml', specs: [{ label: 'Length', value: '152 mm' }, { label: 'Width', value: '197 mm' }, { label: 'Depth', value: '57 mm' }], verify: 'Length and width appear transposed in the source — confirm.' },
-      { id: '750-2cp', label: '750 ml 2CP', specs: [{ label: 'Compartments', value: '2' }, { label: 'Length', value: '152 mm' }, { label: 'Width', value: '197 mm' }, { label: 'Depth', value: '57 mm' }], verify: 'Length and width appear transposed in the source — confirm.' },
-      { id: '750-lid', label: '750 ml Lid', specs: [{ label: 'Length', value: '196 mm' }, { label: 'Width', value: '153 mm' }, { label: 'Depth', value: '8 mm' }] },
-      { id: '1000', label: '1000 ml', specs: [{ label: 'Length', value: '152 mm' }, { label: 'Width', value: '197 mm' }, { label: 'Depth', value: '57 mm' }], verify: 'Source lists the same dimensions as the 750 ml — confirm.' },
-      { id: '1000-lid', label: '1000 ml Lid', specs: [{ label: 'Length', value: '196 mm' }, { label: 'Width', value: '153 mm' }, { label: 'Depth', value: '8 mm' }] },
+      { id: '500', label: '500 ml', specs: [{ label: 'Length', value: '182 mm' }, { label: 'Width', value: '142 mm' }] },
+      { id: '750', label: '750 ml', specs: [{ label: 'Length', value: '152 mm' }, { label: 'Width', value: '197 mm' }], verify: 'Length and width appear transposed in the source — confirm.' },
+      { id: '1000', label: '1000 ml', specs: [{ label: 'Length', value: '152 mm' }, { label: 'Width', value: '197 mm' }], verify: 'Source lists the same dimensions as the 750 ml — confirm.' },
     ],
   },
 
@@ -235,10 +212,10 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White hinged bagasse burger box, open',
     inventoryConfirmed: false,
     variants: [
-      { id: '6x6', label: '6×6 Burger', image: img('clamshell-burger-6x6'), specs: [{ label: 'Length', value: '153 mm' }, { label: 'Width', value: '153 mm' }, { label: 'Depth', value: '44 mm' }] },
-      { id: '8x8', label: '8×8 Burger', image: img('clamshell-burger-8x8'), specs: [{ label: 'Length', value: '153 mm' }, { label: 'Width', value: '153 mm' }, { label: 'Depth', value: '90 mm' }], verify: 'Source lists the same length and width as the 6×6 — confirm.' },
-      { id: '9x9', label: '9×9 Sandwich', image: img('clamshell-sandwich-9x9'), specs: [{ label: 'Length', value: '230 mm' }, { label: 'Width', value: '235 mm' }, { label: 'Depth', value: '44 mm' }] },
-      { id: '9x6', label: '9×6 Subway', image: img('clamshell-subway-9x6'), specs: [{ label: 'Length', value: '240 mm' }, { label: 'Width', value: '145 mm' }, { label: 'Depth', value: '40 mm' }] },
+      { id: '6x6', label: '6×6 Burger', image: img('clamshell-burger-6x6'), specs: [{ label: 'Length', value: '153 mm' }, { label: 'Width', value: '153 mm' }] },
+      { id: '8x8', label: '8×8 Burger', image: img('clamshell-burger-8x8'), specs: [{ label: 'Length', value: '153 mm' }, { label: 'Width', value: '153 mm' }], verify: 'Source lists the same length and width as the 6×6 — confirm.' },
+      { id: '9x9', label: '9×9 Sandwich', image: img('clamshell-sandwich-9x9'), specs: [{ label: 'Length', value: '230 mm' }, { label: 'Width', value: '235 mm' }] },
+      { id: '9x6', label: '9×6 Subway', image: img('clamshell-subway-9x6'), specs: [{ label: 'Length', value: '240 mm' }, { label: 'Width', value: '145 mm' }] },
     ],
   },
   {
@@ -250,8 +227,8 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     imageAlt: 'White hinged bagasse clamshell with three compartments, open',
     inventoryConfirmed: false,
     variants: [
-      { id: '8x8', label: '8×8 3CP', image: img('clamshell-3cp-8x8'), specs: [{ label: 'Length', value: '205 mm' }, { label: 'Width', value: '205 mm' }, { label: 'Depth', value: '90 mm' }] },
-      { id: '9x9', label: '9×9 3CP', image: img('clamshell-3cp-9x9'), specs: [{ label: 'Length', value: '230 mm' }, { label: 'Width', value: '230 mm' }, { label: 'Depth', value: '91 mm' }] },
+      { id: '8x8', label: '8×8 3CP', image: img('clamshell-3cp-8x8'), specs: [{ label: 'Length', value: '205 mm' }, { label: 'Width', value: '205 mm' }] },
+      { id: '9x9', label: '9×9 3CP', image: img('clamshell-3cp-9x9'), specs: [{ label: 'Length', value: '230 mm' }, { label: 'Width', value: '230 mm' }] },
     ],
   },
 
@@ -266,8 +243,7 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     inventoryConfirmed: false,
     note: 'Source lists cup weights in an unclear unit; weights are available on request.',
     variants: [
-      { id: '30', label: '30 ml', image: img('sauce-cup-30'), specs: [{ label: 'Capacity', value: '30 ml' }, { label: 'Size', value: '67 mm' }] },
-      { id: '55', label: '55 ml', image: img('sauce-cup-55'), specs: [{ label: 'Capacity', value: '55 ml' }, { label: 'Size', value: '47 mm' }, { label: 'Top diameter', value: '55 mm' }] },
+      { id: '55', label: '55 ml', image: img('sauce-cup-55'), specs: [{ label: 'Capacity', value: '55 ml' }, { label: 'Size', value: '47 mm' }] },
       { id: '60', label: '60 ml', image: img('sauce-cup-60'), specs: [{ label: 'Capacity', value: '60 ml' }, { label: 'Size', value: '60 mm' }] },
     ],
   },
@@ -275,75 +251,13 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     id: 'coffee-cup',
     name: 'Coffee Cup',
     category: 'cups-lids',
-    description: 'Bagasse cups for hot beverages in two serving sizes.',
+    description: 'Bagasse cups for hot beverages.',
     image: img('coffee-cup-250'),
     imageAlt: 'White bagasse coffee cup, side view',
     inventoryConfirmed: false,
     note: 'Source lists cup weights in an unclear unit; weights are available on request.',
     variants: [
-      { id: '220', label: '220 ml', image: img('coffee-cup-220'), specs: [{ label: 'Capacity', value: '220 ml' }, { label: 'Size', value: '80 mm' }, { label: 'Top diameter', value: '78 mm' }] },
-      { id: '250', label: '250 ml', image: img('coffee-cup-250'), specs: [{ label: 'Capacity', value: '250 ml' }, { label: 'Size', value: '80 mm' }, { label: 'Top diameter', value: '89 mm' }] },
-    ],
-  },
-  {
-    id: 'sipper-lid',
-    name: 'Sipper Lid',
-    category: 'cups-lids',
-    description: 'Domed lids with a sip opening, in 80 mm and 90 mm locking sizes.',
-    image: img('sipper-lid-90'),
-    imageAlt: 'White domed sipper lid with drinking opening',
-    inventoryConfirmed: false,
-    note: 'Lid depth is listed in an unclear unit in the source; available on request.',
-    variants: [
-      { id: '80', label: '80 mm', image: img('sipper-lid-80'), specs: [{ label: 'Diameter', value: '84 mm' }, { label: 'Locking diameter', value: '80 mm' }] },
-      { id: '90', label: '90 mm', image: img('sipper-lid-90'), specs: [{ label: 'Diameter', value: '94 mm' }, { label: 'Locking diameter', value: '90 mm' }] },
-    ],
-  },
-  {
-    id: 'paper-cups-straws',
-    name: 'Paper Cups & Straws',
-    category: 'cups-lids',
-    description: 'Paper cups with paper straws and lids for takeaway beverages.',
-    image: img('paper-cups-straws'),
-    imageAlt: 'Brown paper cups stacked with lids and striped paper straws',
-    inventoryConfirmed: false,
-    variants: [
-      {
-        id: 'standard',
-        label: 'Assorted',
-        specs: [{ label: 'Specifications', value: 'On request' }],
-      },
-    ],
-  },
-
-  // ── Cutlery ───────────────────────────────────────────────────────────────
-  {
-    id: 'paper-cutlery',
-    name: 'Paper Cutlery',
-    category: 'cutlery',
-    description: 'Paper spoon, fork and butter knife, plus a short ice-cream spoon.',
-    image: img('paper-spoon'),
-    imageAlt: 'Paper spoon',
-    inventoryConfirmed: false,
-    variants: [
-      { id: 'spoon', label: 'Spoon', image: img('paper-spoon'), specs: [{ label: 'Length', value: '158 mm' }] },
-      { id: 'fork', label: 'Fork', image: img('paper-fork'), specs: [{ label: 'Length', value: '158 mm' }] },
-      { id: 'knife', label: 'Butter Knife', image: img('paper-knife'), specs: [{ label: 'Length', value: '158 mm' }] },
-      { id: 'icecream', label: 'Ice-cream Spoon', image: img('paper-icecream-spoon'), specs: [{ label: 'Length', value: '90 mm' }] },
-    ],
-  },
-  {
-    id: 'bio-cutlery',
-    name: 'Bio-Plastic Cutlery',
-    category: 'cutlery',
-    description: 'Spoon, fork and butter knife in a bio-plastic material.',
-    image: img('bio-spoon'),
-    imageAlt: 'Off-white bio-plastic spoon',
-    inventoryConfirmed: false,
-    variants: [
-      { id: 'spoon', label: 'Spoon', image: img('bio-spoon'), specs: [{ label: 'Length', value: '145 mm' }] },
-      { id: 'fork', label: 'Fork', image: img('bio-fork'), specs: [{ label: 'Length', value: '165 mm' }] },
-      { id: 'knife', label: 'Butter Knife', image: img('bio-knife'), specs: [{ label: 'Length', value: '160 mm' }] },
+      { id: '250', label: '250 ml', image: img('coffee-cup-250'), specs: [{ label: 'Capacity', value: '250 ml' }, { label: 'Size', value: '80 mm' }] },
     ],
   },
 ]

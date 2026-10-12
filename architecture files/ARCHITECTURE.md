@@ -1,6 +1,6 @@
 # Packpetti website: architecture
 
-Last updated: 2026-10-11
+Last updated: 2026-10-12
 
 Single-page marketing site for Packpetti, a bagasse food-packaging trading and distribution business
 selling in bulk to hotels, restaurants, caterers, canteens and other food-service buyers. The goal of the
@@ -45,12 +45,13 @@ site/
 ├─ public/
 │  ├─ images/products/        transparent square product cut-outs (webp)
 │  ├─ images/scenes/          lifestyle photographs (webp, 1-2 widths each)
-│  ├─ images/                 logo files (lockups, mark, reversed)
+│  ├─ images/                 logo files (lockups, mark, reversed), bg-pattern.webp (site background), collection.webp (closing section photo)
 │  └─ favicon.png, apple-touch-icon.png
 ├─ product photos/PackPetti/  original supplied product photographs (see section 6)
+├─ product photos/background/ supplied bg-green.png (site pattern) and collection.png (closing section)
 ├─ reference/                 logo and supplier catalogue used as reference (PDF is git-ignored)
 ├─ docs/image-manifest.md     image provenance and replacement list
-├─ prompts/                   the briefs the site was built from (initial, V2, update)
+├─ prompts/                   the briefs the site was built from (initial, V2, update, change)
 └─ architecture files/        this document
 ```
 
@@ -64,7 +65,7 @@ MotionConfig (respects prefers-reduced-motion)
 ├─ <main id="main">
 │  ├─ Hero           #top
 │  ├─ Intro          #about
-│  ├─ Collection     #products   six category panels (photo or product-stage panels)
+│  ├─ Collection     #products   five category panels (photo or product-stage panels)
 │  ├─ ProductSelector #catalogue filters, family list, size selector, spec stage
 │  ├─ WhoWeServe     #who-we-serve   customer segments, each linking to a product family
 │  ├─ MaterialStory  bagasse material story
@@ -103,8 +104,10 @@ Flow in practice:
 
 Static data:
 
-- `src/data/products.ts`: `CATEGORIES` (6: plates-bowls, meal-trays, takeaway, clamshells, cups-lids,
-  cutlery) and `PRODUCT_FAMILIES` (14 families, each with one or more size `variants` and specs).
+- `src/data/products.ts`: `CATEGORIES` (5: plates-bowls, meal-trays, takeaway, clamshells, cups-lids)
+  and `PRODUCT_FAMILIES` (10 families, each with one or more size `variants` and specs). The catalogue was
+  trimmed on 2026-10-12 to the products shown in `product photos/PackPetti/`; diameter and depth specs are not
+  shown (round-plate diameters stay in the data as `hidden` specs that only drive the relative-size scaling).
   Helpers: `categoryById`, `familiesIn`, `formatCount`. Every family has `inventoryConfirmed: false`
   until Packpetti confirms stock. A variant's `verify` note surfaces a "please confirm" flag in the UI.
   `img(file)` turns a file name into `/images/products/<file>.webp`.
@@ -129,13 +132,16 @@ mobile and 48 px from the `sm` breakpoint up.
 **Mobile menu** (`Header.tsx`). A toggle shows a full-height forest-green panel under the header, hidden at
 `lg` and above. Links are plain text rows at 18 px with no numbering.
 
-**Collection panels** (`Collection.tsx`). Each of the six panels is either a full-bleed photograph
+**Collection panels** (`Collection.tsx`). Each of the five panels is either a full-bleed photograph
 (`kind: 'photo'`, from `scenes.ts`) or a tinted "stage" holding product cut-outs (`kind: 'stage'`,
 from `public/images/products/`). Panels carry the category name, summary, family and format counts, and an
 Explore control. Panels are not numbered.
 
 **Motion.** Reveals, masks and small scroll-linked effects use Framer Motion and render in place when the
-user prefers reduced motion. Nothing hijacks scrolling.
+user prefers reduced motion. Nothing hijacks scrolling. `LineReveal` reads in-view from the stationary mask,
+not the sliding text: a heading line that wraps onto two or more visual lines is pushed fully out of its mask,
+and observing the text itself would never fire, leaving the line invisible (this hid "Ready to pack" in the
+closing section on desktop).
 
 **Responsive images.** Scene images ship at one or two widths and use `srcSet`. Product cut-outs are single
 files that components size by percentage, so a replacement should keep a square canvas.
@@ -146,10 +152,10 @@ Two image families, both under `public/images/` and both referenced from data or
 
 | Folder | Contents | Used by |
 |---|---|---|
-| `products/` | transparent, square, product-only webp cut-outs | `products.ts`, Collection stages, Hero overlay, MaterialStory, Footer/FinalCTA |
+| `products/` | transparent, square, product-only webp cut-outs | `products.ts`, Collection stages, MaterialStory |
 | `scenes/` | lifestyle photographs | `scenes.ts` |
 
-**Provenance as of 2026-10-11**
+**Provenance as of 2026-10-12**
 - **22 product cut-outs come from Packpetti's own supplied photographs** in `product photos/PackPetti/`.
   The originals are JPGs on a black background with product-name captions. They were processed into
   transparent, caption-free, square webp files (about 800 px) by removing the black background, cropping out
@@ -157,10 +163,10 @@ Two image families, both under `public/images/` and both referenced from data or
   so repeat it by hand or script for new photos. Updated files: bowl 6/8/12 oz; antileak-container 500/750;
   rectangle-container; round-plate; compartment-plate 3cp/4cp/9cp; meal-tray 3cp/5cp; square-plate; all
   six clamshell files; coffee-cup-250; sauce-cup 55/60.
-- **The remaining product cut-outs are still interim images from a third-party supplier catalogue**: bowl
-  24/32 oz and lid, antileak 1000 ml and lid, coffee-cup-220, sauce-cup-30, both sipper lids,
-  paper-cups-straws, and all cutlery. No supplied photograph covers them, so they look different next to
-  the new ones.
+- **Products without a supplied photograph were removed on 2026-10-12** (bowl 24/32 oz and lid, antileak 1000 ml
+  and the separate lid entries, coffee-cup 220 ml, sauce-cup 30 ml, sipper lids, paper cups and straws, all
+  cutlery, and the 750 ml 2CP rectangle container), along with their image files. Every remaining cut-out is
+  from the supplied photographs.
 - **All nine scene photographs are still interim third-party images.**
 - Supplied photographs with no matching product entry: 0001 (4x4 dona), 0006 (650 ml container),
   0014, 0017-0019, 0021, 0022, 0024 (extra plate and tray sizes) and 0031 (4 oz bowl).
@@ -170,6 +176,15 @@ Two image families, both under `public/images/` and both referenced from data or
 **Replacing an image.** Overwrite the file in `public/images/products/` (keep the name and a square canvas),
 or for a scene drop new files in `public/images/scenes/` and edit its entry in `scenes.ts`. No component
 changes are needed.
+
+**Site background.** `body` in `src/styles/index.css` is ivory with `public/images/bg-pattern.webp` tiled over
+it at 420 px (`background-size`). The pattern is the supplied `product photos/background/bg-green.png` with its
+baked-in checkerboard removed and its opacity baked down to about 7 per cent in the webp alpha channel, so it
+only shows through sections that have no background colour of their own (About, Who We Serve). To change the
+scale edit `background-size`; to change the strength regenerate the webp. The closing call to action shows
+`public/images/collection.webp` (from `product photos/background/collection.png`), sized at 96% of its
+column and bleeding off the right edge. The footer is a light beige
+section using the original-colour logo (`logo-transparent.png`).
 
 **Brand.** Logo lockups and the mark are in `public/images/`; the JPEG original is in `reference/`. An SVG
 logo would give sharper rendering and is still needed.
